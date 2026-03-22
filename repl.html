@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frython 🐓 — REPL Interactif</title>
+  <meta name="description" content="Testez Frython directement dans votre navigateur. Un interpréteur interactif pour le Python en français." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/repl.css" />
+</head>
+<body>
+  <div id="navbar-mount"></div>
+
+  <main class="repl-main">
+    <!-- Sidebar gauche -->
+    <aside class="repl-sidebar" id="repl-sidebar">
+      <div class="repl-sidebar-inner">
+        <h2 class="sidebar-title">🐓 Exemples rapides</h2>
+        <p class="sidebar-subtitle">Cliquez pour charger dans le REPL</p>
+
+        <div class="example-category">
+          <span class="category-label">Débutant</span>
+          <button class="example-snippet" data-code='afficher("Bonjour le monde !")'>👋 Bonjour le monde</button>
+          <button class="example-snippet" data-code='prénom = "Jacques"
+afficher("Bonjour, " + prénom + " !")'>🧑 Variable & afficher</button>
+          <button class="example-snippet" data-code='âge = 25
+si âge >= 18:
+    afficher("Majeur !")
+sinon:
+    afficher("Mineur !")'>🔀 Si / Sinon</button>
+          <button class="example-snippet" data-code='pour i dans intervalle(1, 6):
+    afficher(i)'>🔢 Boucle pour</button>
+        </div>
+
+        <div class="example-category">
+          <span class="category-label">Intermédiaire</span>
+          <button class="example-snippet" data-code='déf saluer(nom):
+    retourner "Bonjour, " + nom + " !"
+
+résultat = saluer("Marie")
+afficher(résultat)'>🔧 Définir une fonction</button>
+          <button class="example-snippet" data-code='nombres = [3, 1, 4, 1, 5, 9, 2, 6]
+afficher("Liste :", nombres)
+afficher("Longueur :", longueur(nombres))
+nombres.ajouter(7)
+afficher("Après ajout :", nombres)'>📋 Listes</button>
+          <button class="example-snippet" data-code='compteur = 0
+tantque compteur < 5:
+    afficher("Compteur :", compteur)
+    compteur = compteur + 1'>🔁 Boucle tantque</button>
+        </div>
+
+        <div class="example-category">
+          <span class="category-label">Avancé</span>
+          <button class="example-snippet" data-code='déf fibonacci(n):
+    si n <= 1:
+        retourner n
+    retourner fibonacci(n-1) + fibonacci(n-2)
+
+pour i dans intervalle(10):
+    afficher(fibonacci(i))'>🌀 Fibonacci récursif</button>
+          <button class="example-snippet" data-code='classe Animal:
+    déf __init__(soi, nom):
+        soi.nom = nom
+    déf parler(soi):
+        afficher(soi.nom + " dit quelque chose")
+
+classe Chien(Animal):
+    déf parler(soi):
+        afficher(soi.nom + " dit : Ouaf !")
+
+rex = Chien("Rex")
+rex.parler()'>🐕 Classes & Héritage</button>
+          <button class="example-snippet" data-code='essayer:
+    x = 10 / 0
+sauf ZeroDivisionError:
+    afficher("Erreur : division par zéro !")
+enfin:
+    afficher("Bloc enfin exécuté.")'>🛡️ Exceptions</button>
+        </div>
+
+        <div class="repl-info-box">
+          <h3>💡 Astuces</h3>
+          <ul>
+            <li>Tapez <code>aide()</code> pour l'aide</li>
+            <li>Tapez <code>effacer()</code> pour vider le terminal</li>
+            <li>Flèches ↑↓ pour l'historique</li>
+            <li>Tab pour l'autocomplétion</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Zone principale REPL -->
+    <section class="repl-content">
+      <div class="repl-header">
+        <div class="repl-header-left">
+          <h1 class="repl-title">Terminal Frython</h1>
+          <span class="repl-badge">v1.0.0</span>
+          <span class="repl-status" id="repl-status">
+            <span class="status-dot"></span> Prêt
+          </span>
+        </div>
+        <div class="repl-header-actions">
+          <button class="repl-action-btn" id="btn-share" title="Partager le code">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Partager
+          </button>
+          <button class="repl-action-btn" id="btn-download" title="Télécharger le code">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Télécharger
+          </button>
+          <button class="repl-action-btn danger" id="btn-clear-all" title="Tout effacer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            Tout effacer
+          </button>
+        </div>
+      </div>
+
+      <!-- Zone de split : éditeur + terminal -->
+      <div class="repl-split-container" id="repl-split">
+        <!-- Éditeur de code -->
+        <div class="repl-editor-panel" id="editor-panel">
+          <div class="panel-header">
+            <div class="mac-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="panel-title">✏️ Éditeur — main.fy</span>
+            <div class="panel-actions">
+              <button class="panel-btn" id="btn-run" title="Exécuter (Ctrl+Enter)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Exécuter
+              </button>
+              <button class="panel-btn secondary" id="btn-format">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
+                Formater
+              </button>
+            </div>
+          </div>
+          <div class="editor-wrapper">
+            <div class="line-numbers" id="line-numbers">1</div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+              autocorrect="off"
+              autocapitalize="off"
+              placeholder="# Écrivez votre code Frython ici...
+# Exemple :
+afficher(&quot;Sacré bleu !&quot;)"
+            ></textarea>
+            <div class="editor-highlight" id="editor-highlight" aria-hidden="true"></div>
+          </div>
+          <div class="editor-footer">
+            <span class="editor-info" id="editor-info">Ln 1, Col 1</span>
+            <span class="editor-info">Frython 1.0</span>
+            <kbd class="editor-shortcut">Ctrl+↵ pour exécuter</kbd>
+          </div>
+        </div>
+
+        <!-- Séparateur redimensionnable -->
+        <div class="repl-divider" id="repl-divider" title="Glisser pour redimensionner">
+          <div class="divider-handle"></div>
+        </div>
+
+        <!-- Terminal de sortie -->
+        <div class="repl-terminal-panel" id="terminal-panel">
+          <div class="panel-header">
+            <div class="mac-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="panel-title">🖥️ Terminal Frython</span>
+            <div class="panel-actions">
+              <button class="panel-btn secondary" id="btn-clear-terminal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                Vider
+              </button>
+            </div>
+          </div>
+
+          <!-- Terminal de sortie -->
+          <div class="terminal-output" id="terminal-output">
+            <div class="terminal-welcome">
+              <pre class="welcome-art">
+  ______             _   _
+ |  ____|           | | | |
+ | |__ _ __ _   _  | |_| |__   ___  _ __
+ |  __| '__| | | | | __| '_ \ / _ \| '_ \
+ | |  | |  | |_| | | |_| | | | (_) | | | |
+ |_|  |_|   \__, |  \__|_| |_|\___/|_| |_|
+              __/ |
+             |___/
+              </pre>
+              <p class="welcome-version">Frython v1.0.0 — Python en Français 🇫🇷</p>
+              <p class="welcome-hint">Tapez <code>aide()</code> pour la liste des commandes disponibles.</p>
+              <p class="welcome-hint">Utilisez l'éditeur à gauche ou la ligne de commande ci-dessous.</p>
+            </div>
+          </div>
+
+          <!-- Ligne de commande interactive -->
+          <div class="repl-input-area">
+            <div class="repl-prompt-line">
+              <span class="repl-prompt">🐓 &gt;&gt;&gt;</span>
+              <input
+                type="text"
+                id="frython-repl"
+                class="repl-input"
+                placeholder="Entrez une commande Frython..."
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Ligne de commande Frython"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglets traduction -->
+      <div class="transpile-panel" id="transpile-panel">
+        <div class="transpile-header">
+          <h3 class="transpile-title">🔄 Transpilation en temps réel</h3>
+          <div class="transpile-tabs">
+            <button class="tab-btn active" data-tab="python">Python généré</button>
+            <button class="tab-btn" data-tab="ast">Arbre syntaxique</button>
+            <button class="tab-btn" data-tab="tokens">Tokens</button>
+          </div>
+          <button class="copy-transpile" id="copy-transpile" title="Copier le Python">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copier
+          </button>
+        </div>
+        <div class="transpile-content">
+          <div class="tab-panel active" id="tab-python">
+            <pre class="transpile-code" id="python-output"><code class="placeholder-code"># Le code Python apparaîtra ici après exécution
+# Cliquez sur "Exécuter" pour transpiler votre code Frython</code></pre>
+          </div>
+          <div class="tab-panel" id="tab-ast">
+            <pre class="transpile-code" id="ast-output"><code class="placeholder-code"># L'arbre syntaxique apparaîtra ici</code></pre>
+          </div>
+          <div class="tab-panel" id="tab-tokens">
+            <pre class="transpile-code" id="tokens-output"><code class="placeholder-code"># La liste des tokens apparaîtra ici</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal partage -->
+  <div class="modal-overlay" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-modal-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="share-modal-title">Partager ce code</h3>
+        <button class="modal-close" id="share-modal-close" aria-label="Fermer">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Copiez ce lien pour partager votre code :</p>
+        <div class="share-url-row">
+          <input type="text" id="share-url" class="share-url-input" readonly />
+          <button class="btn-primary" id="copy-share-url">Copier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-mount"></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/repl.js"></script>
+</body>
+</html>

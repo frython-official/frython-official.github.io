@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frython — Python en français. Écrivez du code Python avec des mots-clés entièrement en français. Projet humoristique mais 100% fonctionnel.">
+  <meta property="og:title" content="Frython — Python en français 🐓">
+  <meta property="og:description" content="Ne réinventez pas la roue, traduisez-la. Frython transpile votre code français vers Python.">
+  <meta property="og:type" content="website">
+  <title>Frython — Python en français 🐓</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐓</text></svg>">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+
+  <!-- NAVBAR injected by JS -->
+  <div id="navbar-mount"></div>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Section principale" id="hero">
+      <div class="hero-bg-gradient" aria-hidden="true"></div>
+
+      <!-- Floating code snippets (decorative) -->
+      <div class="hero-floaters" aria-hidden="true">
+        <span class="floater floater-1">déf saluer():</span>
+        <span class="floater floater-2">si Vrai:</span>
+        <span class="floater floater-3">afficher("Bonjour!")</span>
+        <span class="floater floater-4">tantque Faux:</span>
+        <span class="floater floater-5">retourner résultat</span>
+        <span class="floater floater-6">classe Animal:</span>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-content animate-in">
+          <div class="hero-badge">
+            <span class="badge badge-accent">🐓 v1.0.0 sur PyPI</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-title-line">Frython :</span>
+            <span class="hero-title-accent">Python en français</span>
+          </h1>
+
+          <p class="hero-subtitle animate-in animate-in-delay-1">
+            Ne réinventez pas la roue,&nbsp;traduisez-la.<br>
+            Écrivez du code Python avec des mots-clés entièrement en français. Parce que <em>pourquoi pas&nbsp;?</em>
+          </p>
+
+          <div class="hero-actions animate-in animate-in-delay-2">
+            <a href="docs.html" class="btn btn-primary btn-lg">
+              📚 Découvrir la doc
+            </a>
+            <a href="repl.html" class="btn btn-secondary btn-lg">
+              ▶ Essayer en ligne
+            </a>
+          </div>
+
+          <!-- Install command -->
+          <div class="hero-install animate-in animate-in-delay-3">
+            <div class="install-block">
+              <span class="install-prompt">$</span>
+              <code id="install-code">pip install frython</code>
+              <button class="install-copy" id="install-copy-btn" aria-label="Copier la commande d'installation">
+                📋
+              </button>
+            </div>
+            <span class="install-note">Python 3.8+ requis</span>
+          </div>
+        </div>
+
+        <!-- 3D Canvas / Hero Visual -->
+        <div class="hero-visual animate-in animate-in-delay-2">
+          <canvas id="hero-3d" aria-hidden="true"></canvas>
+          <div class="hero-code-preview">
+            <div class="code-block" style="font-size:0.8rem;">
+              <div class="code-block-header">
+                <div class="code-block-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="code-block-lang">calculatrice.fy</span>
+              </div>
+              <div class="code-block-body">
+<span class="kw-comment"># Frython — Python en français</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">additionner</span>(a, b):
+    <span class="kw-fr">retourner</span> a + b
+
+<span class="kw-fr">déf</span> <span class="kw-fn">main</span>():
+    x = <span class="kw-num">10</span>
+    y = <span class="kw-num">32</span>
+    résultat = additionner(x, y)
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"</span><span class="kw-num">{x}</span><span class="kw-str"> + </span><span class="kw-num">{y}</span><span class="kw-str"> = </span><span class="kw-num">{résultat}</span><span class="kw-str">"</span>)
+    <span class="kw-comment"># 🐓 10 + 32 = 42</span>
+
+<span class="kw-fr">si</span> __name__ == <span class="kw-str">"__main__"</span>:
+    main()
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-dot"></div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section how-it-works" id="how-it-works" aria-label="Comment ça fonctionne">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Fonctionnement</span>
+          <h2 class="section-title">Comment ça <span>fonctionne</span> ?</h2>
+          <p class="section-subtitle">Frython transpile votre code français vers Python standard en 5 étapes.</p>
+        </div>
+
+        <!-- Pipeline visual -->
+        <div class="pipeline reveal">
+          <div class="pipeline-step">
+            <div class="pipeline-icon">📝</div>
+            <div class="pipeline-label">Code Frython</div>
+            <code class="pipeline-code">.fy</code>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">
+            <svg viewBox="0 0 40 20" fill="none"><path d="M0 10 H32 M24 3 L32 10 L24 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="pipeline-step pipeline-step-main">
+            <div class="pipeline-icon">⚙️</div>
+            <div class="pipeline-label">Transpileur</div>
+            <code class="pipeline-code">transpileur.py</code>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">
+            <svg viewBox="0 0 40 20" fill="none"><path d="M0 10 H32 M24 3 L32 10 L24 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🐍</div>
+            <div class="pipeline-label">Code Python</div>
+            <code class="pipeline-code">.py</code>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">
+            <svg viewBox="0 0 40 20" fill="none"><path d="M0 10 H32 M24 3 L32 10 L24 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">✅</div>
+            <div class="pipeline-label">Résultat</div>
+            <code class="pipeline-code">output</code>
+          </div>
+        </div>
+
+        <!-- Typing demo -->
+        <div class="typing-demo reveal" aria-label="Démonstration de transpilation">
+          <div class="typing-side">
+            <div class="typing-header">
+              <span class="typing-dot typing-dot-fr"></span>
+              <span>Frython</span>
+            </div>
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots">
+                  <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+                </div>
+                <span class="code-block-lang">frython</span>
+              </div>
+              <pre class="code-block-body" id="typing-fr"></pre>
+            </div>
+          </div>
+
+          <div class="typing-arrow" aria-hidden="true">
+            <div class="arrow-container">
+              <svg class="arrow-svg" viewBox="0 0 60 30" fill="none">
+                <path d="M0 15 H48 M36 5 L48 15 L36 25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="arrow-label">transpile</div>
+            </div>
+          </div>
+
+          <div class="typing-side">
+            <div class="typing-header">
+              <span class="typing-dot typing-dot-py"></span>
+              <span>Python</span>
+            </div>
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots">
+                  <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+                </div>
+                <span class="code-block-lang">python</span>
+              </div>
+              <pre class="code-block-body" id="typing-py"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="section features" id="features" aria-label="Fonctionnalités">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Pourquoi Frython ?</span>
+          <h2 class="section-title">Tout ce que vous <span>aimez</span> de Python</h2>
+          <p class="section-subtitle">En français, avec tout le sérieux qu'on peut raisonnablement attendre d'un coq.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card card reveal">
+            <div class="feature-icon">🎭</div>
+            <h3>Projet Humoristique</h3>
+            <p>Né d'une idée absurde et exécuté avec une rigueur suspecte. Frython est la preuve que l'absurde peut compiler.</p>
+          </div>
+          <div class="feature-card card reveal" style="--delay: 0.1s">
+            <div class="feature-icon">🎓</div>
+            <h3>Apprentissage Facile</h3>
+            <p>Excellent pour apprendre la programmation en français. Les concepts en langue maternelle, c'est plus naturel.</p>
+          </div>
+          <div class="feature-card card reveal" style="--delay: 0.2s">
+            <div class="feature-icon">🔧</div>
+            <h3>100% Compatible</h3>
+            <p>Chaque bibliothèque Python fonctionne. NumPy, Pandas, Django — tout. Parce que Frython génère du vrai Python.</p>
+          </div>
+          <div class="feature-card card reveal" style="--delay: 0.3s">
+            <div class="feature-icon">🐓</div>
+            <h3>Mascotte Officielle</h3>
+            <p>Le Coq Gaulois veille sur votre code. Une mascotte qui fière, élégante, et légèrement condescendante.</p>
+          </div>
+          <div class="feature-card card reveal" style="--delay: 0.1s">
+            <div class="feature-icon">⚡</div>
+            <h3>Transpilation Rapide</h3>
+            <p>Zéro overhead. Le code est transpilé instantanément avant exécution. Même performance qu'en Python pur.</p>
+          </div>
+          <div class="feature-card card reveal" style="--delay: 0.2s">
+            <div class="feature-icon">🌍</div>
+            <h3>Bilinguisme Supporté</h3>
+            <p><code>def</code> et <code>déf</code> coexistent. <code>True</code> et <code>Vrai</code> aussi. On ne vous force à rien.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUICK START ===== -->
+    <section class="section quickstart" id="installation" aria-label="Installation rapide">
+      <div class="container container-narrow">
+        <div class="section-header reveal">
+          <span class="section-tag">Installation</span>
+          <h2 class="section-title">Prêt en <span>30 secondes</span></h2>
+        </div>
+
+        <div class="quickstart-steps">
+          <div class="qs-step reveal">
+            <div class="qs-num">1</div>
+            <div class="qs-content">
+              <h3>Installer Frython</h3>
+              <div class="code-block">
+                <div class="code-block-header">
+                  <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="code-block-lang">bash</span>
+                  <button class="code-copy-btn">📋 Copier</button>
+                </div>
+                <div class="code-block-body"><code>pip install frython</code></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="qs-step reveal">
+            <div class="qs-num">2</div>
+            <div class="qs-content">
+              <h3>Écrire votre premier programme</h3>
+              <div class="code-block">
+                <div class="code-block-header">
+                  <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="code-block-lang">bonjour.fy</span>
+                  <button class="code-copy-btn">📋 Copier</button>
+                </div>
+                <div class="code-block-body"><code><span class="kw-fr">déf</span> <span class="kw-fn">saluer</span>(nom):
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"Bonjour, {nom} ! 🐓"</span>)
+
+saluer(<span class="kw-str">"le monde"</span>)</code></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="qs-step reveal">
+            <div class="qs-num">3</div>
+            <div class="qs-content">
+              <h3>Exécuter</h3>
+              <div class="code-block">
+                <div class="code-block-header">
+                  <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="code-block-lang">terminal</span>
+                  <button class="code-copy-btn">📋 Copier</button>
+                </div>
+                <div class="code-block-body"><code><span style="color:#a6e3a1">$</span> python -m frython bonjour.fy
+<span style="color:#cdd6f4">Bonjour, le monde ! 🐓</span></code></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quickstart-cta reveal">
+          <a href="docs.html" class="btn btn-primary btn-lg">Lire la documentation complète →</a>
+          <a href="repl.html" class="btn btn-secondary btn-lg">Essayer dans le navigateur</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KEYWORDS PREVIEW ===== -->
+    <section class="section keywords-preview" aria-label="Aperçu des mots-clés">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Dictionnaire</span>
+          <h2 class="section-title">Quelques <span>mots-clés</span></h2>
+        </div>
+
+        <div class="kw-table-wrapper reveal">
+          <table class="kw-table" role="table" aria-label="Tableau des mots-clés Frython vers Python">
+            <thead>
+              <tr>
+                <th>Frython 🐓</th>
+                <th>Python 🐍</th>
+                <th>Frython 🐓</th>
+                <th>Python 🐍</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>déf</code></td><td><code>def</code></td><td><code>afficher</code></td><td><code>print</code></td></tr>
+              <tr><td><code>si</code></td><td><code>if</code></td><td><code>sinon</code></td><td><code>else</code></td></tr>
+              <tr><td><code>tantque</code></td><td><code>while</code></td><td><code>pour</code></td><td><code>for</code></td></tr>
+              <tr><td><code>retourner</code></td><td><code>return</code></td><td><code>classe</code></td><td><code>class</code></td></tr>
+              <tr><td><code>Vrai</code></td><td><code>True</code></td><td><code>Faux</code></td><td><code>False</code></td></tr>
+              <tr><td><code>Rien</code></td><td><code>None</code></td><td><code>essayer</code></td><td><code>try</code></td></tr>
+              <tr><td><code>sauf</code></td><td><code>except</code></td><td><code>lever</code></td><td><code>raise</code></td></tr>
+              <tr><td><code>importer</code></td><td><code>import</code></td><td><code>intervalle</code></td><td><code>range</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align:center; margin-top: 2rem;" class="reveal">
+          <a href="docs.html#dictionnaires" class="btn btn-secondary">Voir tous les 200+ mots-clés →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>

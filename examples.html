@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exemples interactifs Frython — comparaison side-by-side Frython vs Python.">
+  <title>Exemples — Frython 🐓</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐓</text></svg>">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/examples.css">
+</head>
+<body>
+  <div id="navbar-mount"></div>
+
+  <main style="padding-top:64px;">
+
+    <!-- HEADER -->
+    <section class="section-sm examples-header">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Exemples interactifs</span>
+          <h1 class="section-title">Frython en <span>action</span></h1>
+          <p class="section-subtitle">Comparez le code Frython et Python côte à côte. Faites glisser le curseur pour explorer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLES LIST -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+
+        <!-- Filter tabs -->
+        <div class="examples-filter reveal">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="debutant">Débutant</button>
+          <button class="filter-btn" data-filter="intermediaire">Intermédiaire</button>
+          <button class="filter-btn" data-filter="avance">Avancé</button>
+        </div>
+
+        <!-- Example Cards Grid -->
+        <div class="examples-grid" id="examples-grid">
+
+          <!-- FIBONACCI -->
+          <article class="example-card reveal" data-level="debutant" aria-label="Exemple: Fibonacci">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Fibonacci</h2>
+                <span class="example-level example-level-debutant">Débutant</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Suite de Fibonacci avec récursion. Illustre les fonctions récursives et les boucles.</p>
+            <div class="example-tags">
+              <span class="example-tag">fonctions</span>
+              <span class="example-tag">récursion</span>
+              <span class="example-tag">boucles</span>
+            </div>
+          </article>
+
+          <!-- CALCULATRICE -->
+          <article class="example-card reveal" data-level="debutant" aria-label="Exemple: Calculatrice">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Calculatrice</h2>
+                <span class="example-level example-level-debutant">Débutant</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Calculatrice interactive en ligne de commande. Gestion d'exceptions incluse.</p>
+            <div class="example-tags">
+              <span class="example-tag">exceptions</span>
+              <span class="example-tag">boucles</span>
+              <span class="example-tag">eval</span>
+            </div>
+          </article>
+
+          <!-- TRI À BULLES -->
+          <article class="example-card reveal" data-level="intermediaire" aria-label="Exemple: Tri à bulles">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Tri à bulles</h2>
+                <span class="example-level example-level-inter">Intermédiaire</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Algorithme de tri classique. Démontre les boucles imbriquées et la manipulation de listes.</p>
+            <div class="example-tags">
+              <span class="example-tag">algorithmes</span>
+              <span class="example-tag">listes</span>
+              <span class="example-tag">boucles imbriquées</span>
+            </div>
+          </article>
+
+          <!-- CLASSE ANIMAL -->
+          <article class="example-card reveal" data-level="intermediaire" aria-label="Exemple: Classes">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Classes & Héritage</h2>
+                <span class="example-level example-level-inter">Intermédiaire</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Hiérarchie de classes avec héritage. La POO en français, quelle élégance !</p>
+            <div class="example-tags">
+              <span class="example-tag">classes</span>
+              <span class="example-tag">héritage</span>
+              <span class="example-tag">POO</span>
+            </div>
+          </article>
+
+          <!-- GESTION FICHIER -->
+          <article class="example-card reveal" data-level="avance" aria-label="Exemple: Fichiers">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Gestion de fichiers</h2>
+                <span class="example-level example-level-avance">Avancé</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Lecture/écriture de fichiers avec gestionnaire de contexte et gestion d'erreurs complète.</p>
+            <div class="example-tags">
+              <span class="example-tag">fichiers</span>
+              <span class="example-tag">avec</span>
+              <span class="example-tag">exceptions</span>
+            </div>
+          </article>
+
+          <!-- GENERATEUR -->
+          <article class="example-card reveal" data-level="avance" aria-label="Exemple: Générateurs">
+            <div class="example-card-header">
+              <div>
+                <h2 class="example-title">Générateurs</h2>
+                <span class="example-level example-level-avance">Avancé</span>
+              </div>
+              <button class="example-expand-btn" aria-label="Voir le code complet">Voir →</button>
+            </div>
+            <p class="example-desc">Générateurs avec <code>rendement</code>. Itération paresseuse pour des performances optimales.</p>
+            <div class="example-tags">
+              <span class="example-tag">générateurs</span>
+              <span class="example-tag">rendement</span>
+              <span class="example-tag">itération</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON MODAL -->
+    <div class="comparison-modal" id="comparison-modal" role="dialog" aria-modal="true" aria-label="Comparaison de code" hidden>
+      <div class="modal-overlay" id="modal-overlay"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="modal-title">Exemple</h2>
+            <p class="modal-subtitle">🐓 Frython → 🐍 Python</p>
+          </div>
+          <button class="modal-close" id="modal-close" aria-label="Fermer la comparaison">✕</button>
+        </div>
+
+        <div class="comparison-split">
+          <!-- Frython side -->
+          <div class="comparison-side">
+            <div class="comparison-side-header">
+              <span class="side-dot side-dot-fr"></span>
+              <span>Frython</span>
+              <span class="comparison-side-badge">🐓 .fy</span>
+            </div>
+            <div class="code-block" style="border-radius: 0 0 var(--radius) var(--radius);">
+              <div class="code-block-header" style="border-radius:0;">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang" id="modal-filename-fr">example.fy</span>
+                <button class="code-copy-btn" id="copy-fr">📋 Copier</button>
+              </div>
+              <pre class="code-block-body" id="modal-code-fr" style="max-height:400px;overflow-y:auto;"></pre>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="comparison-arrow">
+            <div class="arrow-anim">→</div>
+            <div class="arrow-label-vertical">transpile</div>
+          </div>
+
+          <!-- Python side -->
+          <div class="comparison-side">
+            <div class="comparison-side-header">
+              <span class="side-dot side-dot-py"></span>
+              <span>Python</span>
+              <span class="comparison-side-badge">🐍 .py</span>
+            </div>
+            <div class="code-block" style="border-radius: 0 0 var(--radius) var(--radius);">
+              <div class="code-block-header" style="border-radius:0;">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang" id="modal-filename-py">example.py</span>
+                <button class="code-copy-btn" id="copy-py">📋 Copier</button>
+              </div>
+              <pre class="code-block-body" id="modal-code-py" style="max-height:400px;overflow-y:auto;"></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a href="repl.html" class="btn btn-primary">▶ Essayer dans le REPL</a>
+          <a href="docs.html" class="btn btn-secondary">📚 Documentation</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/examples.js"></script>
+</body>
+</html>

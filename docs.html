@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation complète de Frython — syntaxe, mots-clés, exemples et architecture interne.">
+  <title>Documentation — Frython 🐓</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐓</text></svg>">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <div class="docs-layout">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="docs-sidebar" id="docs-sidebar" aria-label="Navigation de la documentation">
+      <div class="sidebar-inner">
+        <div class="sidebar-search">
+          <input type="search" id="sidebar-search" placeholder="🔍 Rechercher..." aria-label="Rechercher dans la documentation">
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Sections de documentation">
+          <div class="nav-group">
+            <div class="nav-group-title">Démarrage</div>
+            <ul>
+              <li><a href="#introduction" class="nav-link">1. Introduction</a></li>
+              <li><a href="#installation" class="nav-link">2. Installation</a></li>
+              <li><a href="#utilisation" class="nav-link">3. Utilisation & REPL</a></li>
+            </ul>
+          </div>
+          <div class="nav-group">
+            <div class="nav-group-title">Référence</div>
+            <ul>
+              <li><a href="#syntaxe" class="nav-link">4. Syntaxe complète</a></li>
+              <li><a href="#dictionnaires" class="nav-link">5. Dictionnaires</a></li>
+              <li><a href="#exceptions" class="nav-link">6. Exceptions</a></li>
+              <li><a href="#modules" class="nav-link">7. Modules traduits</a></li>
+            </ul>
+          </div>
+          <div class="nav-group">
+            <div class="nav-group-title">Avancé</div>
+            <ul>
+              <li><a href="#exemples" class="nav-link">8. Exemples complets</a></li>
+              <li><a href="#api" class="nav-link">9. API Python</a></li>
+              <li><a href="#architecture" class="nav-link">10. Architecture</a></li>
+            </ul>
+          </div>
+          <div class="nav-group">
+            <div class="nav-group-title">Outils</div>
+            <ul>
+              <li><a href="#vscode" class="nav-link">11. Extension VS Code</a></li>
+              <li><a href="#faq" class="nav-link">12. FAQ</a></li>
+              <li><a href="#contribuer" class="nav-link">13. Contribuer</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="docs-main" id="docs-main">
+      <div class="docs-content">
+
+        <!-- ---- 1. INTRODUCTION ---- -->
+        <section class="doc-section" id="introduction" aria-labelledby="intro-h">
+          <div class="doc-badge">Introduction</div>
+          <h1 id="intro-h" class="doc-h1">📚 Documentation Frython</h1>
+          <p class="doc-lead">Documentation complète du langage de programmation Frython — Python en français 🐓</p>
+
+          <div class="doc-callout doc-callout-info">
+            <strong>🐓 Qu'est-ce que Frython ?</strong><br>
+            Frython est un langage transpilé basé sur Python. Il permet d'écrire du code Python en utilisant des mots-clés et des fonctions entièrement en français. Frython ne réinvente pas la roue — il traduit simplement votre code français vers Python standard, puis laisse Python faire le reste.
+          </div>
+
+          <h2 class="doc-h2">Pourquoi Frython ?</h2>
+          <ul class="doc-list">
+            <li>🎭 C'est un projet humoristique mais entièrement fonctionnel</li>
+            <li>🎓 Excellent pour apprendre la programmation en français</li>
+            <li>🔧 100% compatible avec toutes les bibliothèques Python</li>
+            <li>🐓 Le coq est une mascotte parfaite</li>
+          </ul>
+
+          <h2 class="doc-h2">Pipeline de transpilation</h2>
+          <div class="pipeline-doc">
+            <div class="pipeline-doc-step">
+              <div class="pipeline-doc-icon">📝</div>
+              <div class="pipeline-doc-text">
+                <strong>Code Frython</strong>
+                <code>fichier.fy</code>
+              </div>
+            </div>
+            <div class="pipeline-doc-arrow">↓</div>
+            <div class="pipeline-doc-step pipeline-doc-highlight">
+              <div class="pipeline-doc-icon">⚙️</div>
+              <div class="pipeline-doc-text">
+                <strong>Transpileur</strong>
+                <code>transpileur.py</code>
+              </div>
+            </div>
+            <div class="pipeline-doc-arrow">↓</div>
+            <div class="pipeline-doc-step">
+              <div class="pipeline-doc-icon">🐍</div>
+              <div class="pipeline-doc-text">
+                <strong>Code Python valide</strong>
+                <code>.py</code>
+              </div>
+            </div>
+            <div class="pipeline-doc-arrow">↓</div>
+            <div class="pipeline-doc-step">
+              <div class="pipeline-doc-icon">✅</div>
+              <div class="pipeline-doc-text">
+                <strong>Résultat</strong>
+                <code>output</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- 2. INSTALLATION ---- -->
+        <section class="doc-section" id="installation" aria-labelledby="install-h">
+          <div class="doc-badge">Installation</div>
+          <h1 id="install-h" class="doc-h1">2. Installation</h1>
+
+          <h2 class="doc-h2">Prérequis</h2>
+          <ul class="doc-list">
+            <li>Python 3.8 ou supérieur</li>
+            <li>pip (inclus avec Python)</li>
+          </ul>
+
+          <h2 class="doc-h2">Depuis PyPI (recommandé)</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">bash</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code>pip install frython</code></div>
+          </div>
+
+          <h2 class="doc-h2">Depuis les sources</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">bash</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code>git clone https://github.com/Artleboss2/frython.git
+cd frython
+pip install .</code></div>
+          </div>
+
+          <h2 class="doc-h2">Vérifier l'installation</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">bash</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code>python -m frython --version
+<span class="kw-comment"># Frython 1.0.0 — Python en français 🐓</span></code></div>
+          </div>
+
+          <h2 class="doc-h2">Sur Windows avec plusieurs versions de Python</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">powershell</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code>C:\Python314\python.exe -m frython mon_fichier.fy
+
+<span class="kw-comment"># Ou créez un alias PowerShell permanent :</span>
+<span class="kw-comment"># Dans votre $PROFILE PowerShell</span>
+<span class="kw-fr">function</span> frython { C:\Python314\python.exe -m frython $args }</code></div>
+          </div>
+        </section>
+
+        <!-- ---- 3. UTILISATION ---- -->
+        <section class="doc-section" id="utilisation" aria-labelledby="util-h">
+          <div class="doc-badge">Utilisation</div>
+          <h1 id="util-h" class="doc-h1">3. Utilisation & REPL</h1>
+
+          <h2 class="doc-h2">Exécuter un fichier</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">bash</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code>python -m frython mon_programme.fy</code></div>
+          </div>
+
+          <h2 class="doc-h2">REPL interactif</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">terminal</span>
+            </div>
+            <div class="code-block-body"><code><span style="color:#a6e3a1">$</span> python -m frython
+
+🐓 Frython v1.0.0 — Python en français, sacré bleu !
+
+🐓 >>> <span class="kw-fn">afficher</span>(<span class="kw-str">"Bonjour!"</span>)
+Bonjour!
+🐓 >>> x = <span class="kw-num">42</span>
+🐓 >>> x * <span class="kw-num">2</span>
+84
+🐓 >>> <span class="kw-fn">quitter</span>()
+Au revoir! 👋</code></div>
+          </div>
+
+          <h2 class="doc-h2">Options de la ligne de commande</h2>
+          <div class="doc-table-wrapper">
+            <table class="doc-table">
+              <thead>
+                <tr><th>Commande</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>python -m frython fichier.fy</code></td><td>Exécuter un fichier</td></tr>
+                <tr><td><code>python -m frython</code></td><td>Lancer la REPL</td></tr>
+                <tr><td><code>python -m frython -t fichier.fy</code></td><td>Afficher le code Python transpilé</td></tr>
+                <tr><td><code>python -m frython -v fichier.fy</code></td><td>Mode verbeux</td></tr>
+                <tr><td><code>python -m frython -c "code"</code></td><td>Exécuter du code direct</td></tr>
+                <tr><td><code>python -m frython --mots-cles</code></td><td>Lister tous les mots-clés</td></tr>
+                <tr><td><code>python -m frython --version</code></td><td>Afficher la version</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="doc-callout doc-callout-tip">
+            <strong>💡 Astuce</strong> — Utilisez <code>python -m frython -t mon_fichier.fy</code> pour voir le code Python généré. Très utile pour déboguer ou apprendre comment Frython traduit votre code.
+          </div>
+        </section>
+
+        <!-- ---- 4. SYNTAXE ---- -->
+        <section class="doc-section" id="syntaxe" aria-labelledby="syntax-h">
+          <div class="doc-badge">Référence</div>
+          <h1 id="syntax-h" class="doc-h1">4. Syntaxe Complète</h1>
+
+          <!-- Tabs -->
+          <div class="doc-tabs" role="tablist" aria-label="Catégories de syntaxe">
+            <button class="tab-btn active" role="tab" aria-selected="true" data-tab="variables">Variables</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="conditions">Conditions</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="boucles">Boucles</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="fonctions">Fonctions</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="classes">Classes</button>
+            <button class="tab-btn" role="tab" aria-selected="false" data-tab="exceptions-tab">Exceptions</button>
+          </div>
+
+          <div class="tab-content active" id="tab-variables">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — variables.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-comment"># Entiers et décimaux</span>
+age = <span class="kw-num">25</span>
+taille = <span class="kw-num">1.75</span>
+pi = <span class="kw-num">3.14159</span>
+
+<span class="kw-comment"># Chaînes</span>
+prenom = <span class="kw-str">"Marie"</span>
+message = <span class="kw-str">'Bonjour le monde!'</span>
+
+<span class="kw-comment"># f-strings</span>
+<span class="kw-fn">afficher</span>(<span class="kw-str">f"Bonjour, {prenom}! Tu as {age} ans."</span>)
+
+<span class="kw-comment"># Booléens</span>
+est_majeur = <span class="kw-bool">Vrai</span>
+est_mineur = <span class="kw-bool">Faux</span>
+
+<span class="kw-comment"># Nul</span>
+valeur = <span class="kw-bool">Rien</span>
+
+<span class="kw-comment"># Structures de données</span>
+nombres = [<span class="kw-num">1</span>, <span class="kw-num">2</span>, <span class="kw-num">3</span>, <span class="kw-num">4</span>, <span class="kw-num">5</span>]
+personne = {<span class="kw-str">"nom"</span>: <span class="kw-str">"Alice"</span>, <span class="kw-str">"age"</span>: <span class="kw-num">30</span>}
+couleurs = {<span class="kw-str">"rouge"</span>, <span class="kw-str">"vert"</span>, <span class="kw-str">"bleu"</span>}
+coordonnees = (<span class="kw-num">48.8566</span>, <span class="kw-num">2.3522</span>)</code></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-conditions">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — conditions.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-comment"># Si simple</span>
+<span class="kw-fr">si</span> age >= <span class="kw-num">18</span>:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">"Majeur"</span>)
+
+<span class="kw-comment"># Si / Sinon</span>
+<span class="kw-fr">si</span> temperature > <span class="kw-num">30</span>:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">"Il fait chaud!"</span>)
+<span class="kw-fr">sinon</span>:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">"Il fait frais."</span>)
+
+<span class="kw-comment"># Si / Sinonsi / Sinon</span>
+<span class="kw-fr">si</span> note >= <span class="kw-num">16</span>:
+    mention = <span class="kw-str">"Très bien"</span>
+<span class="kw-fr">sinonsi</span> note >= <span class="kw-num">14</span>:
+    mention = <span class="kw-str">"Bien"</span>
+<span class="kw-fr">sinonsi</span> note >= <span class="kw-num">12</span>:
+    mention = <span class="kw-str">"Assez bien"</span>
+<span class="kw-fr">sinon</span>:
+    mention = <span class="kw-str">"Insuffisant"</span></code></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-boucles">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — boucles.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-comment"># Boucle pour</span>
+<span class="kw-fr">pour</span> i <span class="kw-fr">dans</span> <span class="kw-fn">intervalle</span>(<span class="kw-num">5</span>):
+    <span class="kw-fn">afficher</span>(i)
+
+<span class="kw-comment"># Boucle pour avec liste</span>
+fruits = [<span class="kw-str">"pomme"</span>, <span class="kw-str">"banane"</span>, <span class="kw-str">"cerise"</span>]
+<span class="kw-fr">pour</span> fruit <span class="kw-fr">dans</span> fruits:
+    <span class="kw-fn">afficher</span>(fruit)
+
+<span class="kw-comment"># Boucle pour avec enumerer</span>
+<span class="kw-fr">pour</span> i, fruit <span class="kw-fr">dans</span> <span class="kw-fn">enumerer</span>(fruits):
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"{i}: {fruit}"</span>)
+
+<span class="kw-comment"># Boucle tantque</span>
+compteur = <span class="kw-num">0</span>
+<span class="kw-fr">tantque</span> compteur < <span class="kw-num">10</span>:
+    <span class="kw-fn">afficher</span>(compteur)
+    compteur += <span class="kw-num">1</span>
+
+<span class="kw-comment"># Casser et continuer</span>
+<span class="kw-fr">pour</span> i <span class="kw-fr">dans</span> <span class="kw-fn">intervalle</span>(<span class="kw-num">10</span>):
+    <span class="kw-fr">si</span> i == <span class="kw-num">5</span>:
+        <span class="kw-fr">casser</span>
+    <span class="kw-fr">si</span> i % <span class="kw-num">2</span> == <span class="kw-num">0</span>:
+        <span class="kw-fr">continuer</span>
+    <span class="kw-fn">afficher</span>(i)</code></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-fonctions">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — fonctions.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-comment"># Fonction simple</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">saluer</span>(nom):
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"Bonjour, {nom}!"</span>)
+
+<span class="kw-comment"># Fonction avec retour</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">additionner</span>(a, b):
+    <span class="kw-fr">retourner</span> a + b
+
+<span class="kw-comment"># Valeurs par défaut</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">saluer</span>(nom, salutation=<span class="kw-str">"Bonjour"</span>):
+    <span class="kw-fr">retourner</span> <span class="kw-str">f"{salutation}, {nom}!"</span>
+
+<span class="kw-comment"># *args et **kwargs</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">afficher_tout</span>(*args, **kwargs):
+    <span class="kw-fr">pour</span> arg <span class="kw-fr">dans</span> args:
+        <span class="kw-fn">afficher</span>(arg)
+
+<span class="kw-comment"># Fonction récursive</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">factorielle</span>(n):
+    <span class="kw-fr">si</span> n <= <span class="kw-num">1</span>:
+        <span class="kw-fr">retourner</span> <span class="kw-num">1</span>
+    <span class="kw-fr">retourner</span> n * factorielle(n - <span class="kw-num">1</span>)
+
+<span class="kw-comment"># Lambda</span>
+doubler = <span class="kw-fr">lambda</span> x: x * <span class="kw-num">2</span></code></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-classes">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — classes.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-fr">classe</span> <span class="kw-fn">Animal</span>:
+    <span class="kw-str">"""Classe de base pour les animaux."""</span>
+    
+    <span class="kw-fr">def</span> __init__(soi, nom, age):
+        soi.nom = nom
+        soi.age = age
+    
+    <span class="kw-fr">déf</span> <span class="kw-fn">parler</span>(soi):
+        <span class="kw-fr">retourner</span> <span class="kw-str">"..."</span>
+    
+    <span class="kw-fr">déf</span> __str__(soi):
+        <span class="kw-fr">retourner</span> <span class="kw-str">f"{soi.nom} ({soi.age} ans)"</span>
+
+
+<span class="kw-fr">classe</span> <span class="kw-fn">Chien</span>(<span class="kw-fn">Animal</span>):
+    <span class="kw-str">"""Un chien."""</span>
+    
+    <span class="kw-fr">def</span> __init__(soi, nom, age, race):
+        <span class="kw-fn">super</span>().__init__(nom, age)
+        soi.race = race
+    
+    <span class="kw-fr">déf</span> <span class="kw-fn">parler</span>(soi):
+        <span class="kw-fr">retourner</span> <span class="kw-str">"Ouaf!"</span>
+
+rex = Chien(<span class="kw-str">"Rex"</span>, <span class="kw-num">3</span>, <span class="kw-str">"Berger"</span>)
+<span class="kw-fn">afficher</span>(rex)          <span class="kw-comment"># Rex (3 ans)</span>
+<span class="kw-fn">afficher</span>(rex.parler()) <span class="kw-comment"># Ouaf!</span></code></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-exceptions-tab">
+            <div class="code-block">
+              <div class="code-block-header">
+                <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                <span class="code-block-lang">frython — exceptions.fy</span>
+                <button class="code-copy-btn">📋 Copier</button>
+              </div>
+              <div class="code-block-body"><code><span class="kw-fr">essayer</span>:
+    resultat = <span class="kw-num">10</span> / <span class="kw-num">0</span>
+<span class="kw-fr">sauf</span> ZeroDivisionError:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">"Division par zéro!"</span>)
+<span class="kw-fr">sauf</span> (ValueError, TypeError) <span class="kw-fr">comme</span> e:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"Erreur: {e}"</span>)
+<span class="kw-fr">enfin</span>:
+    <span class="kw-fn">afficher</span>(<span class="kw-str">"Toujours exécuté."</span>)
+
+<span class="kw-comment"># Lever une exception</span>
+<span class="kw-fr">déf</span> <span class="kw-fn">diviser</span>(a, b):
+    <span class="kw-fr">si</span> b == <span class="kw-num">0</span>:
+        <span class="kw-fr">lever</span> ErreurValeur(<span class="kw-str">"Le diviseur ne peut pas être zéro!"</span>)
+    <span class="kw-fr">retourner</span> a / b</code></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- 5. DICTIONNAIRES ---- -->
+        <section class="doc-section" id="dictionnaires" aria-labelledby="dict-h">
+          <div class="doc-badge">Référence</div>
+          <h1 id="dict-h" class="doc-h1">5. Dictionnaires de traduction</h1>
+
+          <p class="doc-text">Filtrez les tableaux en temps réel avec la barre de recherche.</p>
+
+          <div class="dict-search-bar">
+            <input type="search" id="search-dict" placeholder="🔍 Filtrer les mots-clés..." aria-label="Filtrer le dictionnaire">
+          </div>
+
+          <!-- Keywords table -->
+          <h2 class="doc-h2">Mots-clés et fonctions intégrées</h2>
+          <div class="doc-table-wrapper">
+            <table class="doc-table filterable-table" id="table-keywords">
+              <thead><tr><th>Frython</th><th>Python</th></tr></thead>
+              <tbody>
+                <tr><td><code>déf</code></td><td><code>def</code></td></tr>
+                <tr><td><code>afficher</code></td><td><code>print</code></td></tr>
+                <tr><td><code>si</code></td><td><code>if</code></td></tr>
+                <tr><td><code>sinon</code></td><td><code>else</code></td></tr>
+                <tr><td><code>sinonsi</code></td><td><code>elif</code></td></tr>
+                <tr><td><code>tantque</code></td><td><code>while</code></td></tr>
+                <tr><td><code>pour</code></td><td><code>for</code></td></tr>
+                <tr><td><code>dans</code></td><td><code>in</code></td></tr>
+                <tr><td><code>retourner</code></td><td><code>return</code></td></tr>
+                <tr><td><code>classe</code></td><td><code>class</code></td></tr>
+                <tr><td><code>Vrai</code></td><td><code>True</code></td></tr>
+                <tr><td><code>Faux</code></td><td><code>False</code></td></tr>
+                <tr><td><code>Rien</code></td><td><code>None</code></td></tr>
+                <tr><td><code>essayer</code></td><td><code>try</code></td></tr>
+                <tr><td><code>sauf</code></td><td><code>except</code></td></tr>
+                <tr><td><code>enfin</code></td><td><code>finally</code></td></tr>
+                <tr><td><code>lever</code></td><td><code>raise</code></td></tr>
+                <tr><td><code>importer</code></td><td><code>import</code></td></tr>
+                <tr><td><code>de</code></td><td><code>from</code></td></tr>
+                <tr><td><code>comme</code></td><td><code>as</code></td></tr>
+                <tr><td><code>avec</code></td><td><code>with</code></td></tr>
+                <tr><td><code>intervalle</code></td><td><code>range</code></td></tr>
+                <tr><td><code>longueur</code></td><td><code>len</code></td></tr>
+                <tr><td><code>enumerer</code></td><td><code>enumerate</code></td></tr>
+                <tr><td><code>zipper</code></td><td><code>zip</code></td></tr>
+                <tr><td><code>trier</code></td><td><code>sorted</code></td></tr>
+                <tr><td><code>inverser</code></td><td><code>reversed</code></td></tr>
+                <tr><td><code>somme</code></td><td><code>sum</code></td></tr>
+                <tr><td><code>maximum</code></td><td><code>max</code></td></tr>
+                <tr><td><code>minimum</code></td><td><code>min</code></td></tr>
+                <tr><td><code>absolu</code></td><td><code>abs</code></td></tr>
+                <tr><td><code>arrondir</code></td><td><code>round</code></td></tr>
+                <tr><td><code>entier</code></td><td><code>int</code></td></tr>
+                <tr><td><code>decimal</code></td><td><code>float</code></td></tr>
+                <tr><td><code>chaine</code></td><td><code>str</code></td></tr>
+                <tr><td><code>liste</code></td><td><code>list</code></td></tr>
+                <tr><td><code>dictionnaire</code></td><td><code>dict</code></td></tr>
+                <tr><td><code>ensemble</code></td><td><code>set</code></td></tr>
+                <tr><td><code>booleen</code></td><td><code>bool</code></td></tr>
+                <tr><td><code>casser</code></td><td><code>break</code></td></tr>
+                <tr><td><code>continuer</code></td><td><code>continue</code></td></tr>
+                <tr><td><code>passer</code></td><td><code>pass</code></td></tr>
+                <tr><td><code>global</code></td><td><code>global</code></td></tr>
+                <tr><td><code>saisir</code></td><td><code>input</code></td></tr>
+                <tr><td><code>rendement</code></td><td><code>yield</code></td></tr>
+                <tr><td><code>supprimer</code></td><td><code>del</code></td></tr>
+                <tr><td><code>soi</code></td><td><code>self</code></td></tr>
+                <tr><td><code>asynchrone</code></td><td><code>async</code></td></tr>
+                <tr><td><code>attendre</code></td><td><code>await</code></td></tr>
+                <tr><td><code>lambda</code></td><td><code>lambda</code></td></tr>
+                <tr><td><code>non</code></td><td><code>not</code></td></tr>
+                <tr><td><code>et</code></td><td><code>and</code></td></tr>
+                <tr><td><code>ou</code></td><td><code>or</code></td></tr>
+                <tr><td><code>est</code></td><td><code>is</code></td></tr>
+                <tr><td><code>aide</code></td><td><code>help</code></td></tr>
+                <tr><td><code>ouvrir</code></td><td><code>open</code></td></tr>
+                <tr><td><code>filtrer</code></td><td><code>filter</code></td></tr>
+                <tr><td><code>mapper</code></td><td><code>map</code></td></tr>
+                <tr><td><code>evaluer</code></td><td><code>eval</code></td></tr>
+                <tr><td><code>executer</code></td><td><code>exec</code></td></tr>
+                <tr><td><code>instance_de</code></td><td><code>isinstance</code></td></tr>
+                <tr><td><code>tous</code></td><td><code>all</code></td></tr>
+                <tr><td><code>aucun</code></td><td><code>any</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="doc-h2">Méthodes de chaînes</h2>
+          <div class="doc-table-wrapper">
+            <table class="doc-table filterable-table">
+              <thead><tr><th>Frython</th><th>Python</th></tr></thead>
+              <tbody>
+                <tr><td><code>ajouter</code></td><td><code>append</code></td></tr>
+                <tr><td><code>diviser</code></td><td><code>split</code></td></tr>
+                <tr><td><code>remplacer</code></td><td><code>replace</code></td></tr>
+                <tr><td><code>joindre</code></td><td><code>join</code></td></tr>
+                <tr><td><code>trouver</code></td><td><code>find</code></td></tr>
+                <tr><td><code>majuscule</code></td><td><code>upper</code></td></tr>
+                <tr><td><code>minuscule</code></td><td><code>lower</code></td></tr>
+                <tr><td><code>capitaliser</code></td><td><code>capitalize</code></td></tr>
+                <tr><td><code>supprimer_espaces</code></td><td><code>strip</code></td></tr>
+                <tr><td><code>commencer_par</code></td><td><code>startswith</code></td></tr>
+                <tr><td><code>finir_par</code></td><td><code>endswith</code></td></tr>
+                <tr><td><code>centrer</code></td><td><code>center</code></td></tr>
+                <tr><td><code>titrer</code></td><td><code>title</code></td></tr>
+                <tr><td><code>encoder</code></td><td><code>encode</code></td></tr>
+                <tr><td><code>compter</code></td><td><code>count</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="doc-h2">Méthodes de listes</h2>
+          <div class="doc-table-wrapper">
+            <table class="doc-table filterable-table">
+              <thead><tr><th>Frython</th><th>Python</th></tr></thead>
+              <tbody>
+                <tr><td><code>ajouter</code></td><td><code>append</code></td></tr>
+                <tr><td><code>trier</code></td><td><code>sort</code></td></tr>
+                <tr><td><code>inverser</code></td><td><code>reverse</code></td></tr>
+                <tr><td><code>retirer</code></td><td><code>remove</code></td></tr>
+                <tr><td><code>extraire</code></td><td><code>pop</code></td></tr>
+                <tr><td><code>inserer</code></td><td><code>insert</code></td></tr>
+                <tr><td><code>etendre</code></td><td><code>extend</code></td></tr>
+                <tr><td><code>effacer</code></td><td><code>clear</code></td></tr>
+                <tr><td><code>compter</code></td><td><code>count</code></td></tr>
+                <tr><td><code>copier</code></td><td><code>copy</code></td></tr>
+                <tr><td><code>indice</code></td><td><code>index</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- 6. EXCEPTIONS ---- -->
+        <section class="doc-section" id="exceptions" aria-labelledby="exc-h">
+          <div class="doc-badge">Référence</div>
+          <h1 id="exc-h" class="doc-h1">6. Exceptions et erreurs</h1>
+
+          <div class="doc-table-wrapper">
+            <table class="doc-table">
+              <thead><tr><th>Frython</th><th>Python</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td><code>ErreurValeur</code></td><td><code>ValueError</code></td><td>Valeur incorrecte</td></tr>
+                <tr><td><code>ErreurType</code></td><td><code>TypeError</code></td><td>Mauvais type</td></tr>
+                <tr><td><code>ErreurNom</code></td><td><code>NameError</code></td><td>Nom non défini</td></tr>
+                <tr><td><code>ErreurIndex</code></td><td><code>IndexError</code></td><td>Indice hors limites</td></tr>
+                <tr><td><code>ErreurCle</code></td><td><code>KeyError</code></td><td>Clé inexistante</td></tr>
+                <tr><td><code>ErreurAttribut</code></td><td><code>AttributeError</code></td><td>Attribut inexistant</td></tr>
+                <tr><td><code>ErreurImport</code></td><td><code>ImportError</code></td><td>Import impossible</td></tr>
+                <tr><td><code>ErreurMemoire</code></td><td><code>MemoryError</code></td><td>Mémoire insuffisante</td></tr>
+                <tr><td><code>ErreurRecursion</code></td><td><code>RecursionError</code></td><td>Récursion infinie</td></tr>
+                <tr><td><code>ErreurSyntaxe</code></td><td><code>SyntaxError</code></td><td>Erreur de syntaxe</td></tr>
+                <tr><td><code>ErreurDivisionZero</code></td><td><code>ZeroDivisionError</code></td><td>Division par zéro</td></tr>
+                <tr><td><code>ErreurFichier</code></td><td><code>FileNotFoundError</code></td><td>Fichier introuvable</td></tr>
+                <tr><td><code>ErreurPermission</code></td><td><code>PermissionError</code></td><td>Permission refusée</td></tr>
+                <tr><td><code>ErreurRuntime</code></td><td><code>RuntimeError</code></td><td>Erreur d'exécution</td></tr>
+                <tr><td><code>ErreurTimeout</code></td><td><code>TimeoutError</code></td><td>Délai dépassé</td></tr>
+                <tr><td><code>ErreurInterruption</code></td><td><code>KeyboardInterrupt</code></td><td>Interruption clavier</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- 7. MODULES ---- -->
+        <section class="doc-section" id="modules" aria-labelledby="mod-h">
+          <div class="doc-badge">Référence</div>
+          <h1 id="mod-h" class="doc-h1">7. Modules traduits</h1>
+
+          <div class="dict-search-bar">
+            <input type="search" id="search-modules" placeholder="🔍 Filtrer les modules..." aria-label="Filtrer les modules">
+          </div>
+
+          <div class="doc-table-wrapper">
+            <table class="doc-table" id="table-modules">
+              <thead><tr><th>Frython</th><th>Python</th></tr></thead>
+              <tbody>
+                <tr><td><code>abstrait</code></td><td><code>abc</code></td></tr>
+                <tr><td><code>aleatoire</code></td><td><code>random</code></td></tr>
+                <tr><td><code>async_io</code></td><td><code>asyncio</code></td></tr>
+                <tr><td><code>base_donnees</code></td><td><code>sqlite3</code></td></tr>
+                <tr><td><code>calcul</code></td><td><code>numpy</code></td></tr>
+                <tr><td><code>chemin</code></td><td><code>os.path</code></td></tr>
+                <tr><td><code>chemin_fichier</code></td><td><code>pathlib</code></td></tr>
+                <tr><td><code>chiffrement</code></td><td><code>cryptography</code></td></tr>
+                <tr><td><code>collections</code></td><td><code>collections</code></td></tr>
+                <tr><td><code>compression</code></td><td><code>zipfile</code></td></tr>
+                <tr><td><code>configuration</code></td><td><code>configparser</code></td></tr>
+                <tr><td><code>copie</code></td><td><code>copy</code></td></tr>
+                <tr><td><code>csv</code></td><td><code>csv</code></td></tr>
+                <tr><td><code>dataclasse</code></td><td><code>dataclasses</code></td></tr>
+                <tr><td><code>date</code></td><td><code>datetime</code></td></tr>
+                <tr><td><code>debogueur</code></td><td><code>pdb</code></td></tr>
+                <tr><td><code>donnees</code></td><td><code>pandas</code></td></tr>
+                <tr><td><code>email</code></td><td><code>email</code></td></tr>
+                <tr><td><code>expression_reguliere</code></td><td><code>re</code></td></tr>
+                <tr><td><code>fil</code></td><td><code>threading</code></td></tr>
+                <tr><td><code>fonctionnel</code></td><td><code>functools</code></td></tr>
+                <tr><td><code>fractions</code></td><td><code>fractions</code></td></tr>
+                <tr><td><code>garbage</code></td><td><code>gc</code></td></tr>
+                <tr><td><code>glob</code></td><td><code>glob</code></td></tr>
+                <tr><td><code>graphiques</code></td><td><code>matplotlib</code></td></tr>
+                <tr><td><code>gzip</code></td><td><code>gzip</code></td></tr>
+                <tr><td><code>hachage</code></td><td><code>hashlib</code></td></tr>
+                <tr><td><code>html</code></td><td><code>html</code></td></tr>
+                <tr><td><code>images</code></td><td><code>PIL</code></td></tr>
+                <tr><td><code>inspection</code></td><td><code>inspect</code></td></tr>
+                <tr><td><code>interface</code></td><td><code>tkinter</code></td></tr>
+                <tr><td><code>iterateurs</code></td><td><code>itertools</code></td></tr>
+                <tr><td><code>journalisation</code></td><td><code>logging</code></td></tr>
+                <tr><td><code>json</code></td><td><code>json</code></td></tr>
+                <tr><td><code>math</code></td><td><code>math</code></td></tr>
+                <tr><td><code>mathematiques</code></td><td><code>math</code></td></tr>
+                <tr><td><code>multiprocessus</code></td><td><code>multiprocessing</code></td></tr>
+                <tr><td><code>pathlib</code></td><td><code>pathlib</code></td></tr>
+                <tr><td><code>pickle</code></td><td><code>pickle</code></td></tr>
+                <tr><td><code>plateforme</code></td><td><code>platform</code></td></tr>
+                <tr><td><code>profil</code></td><td><code>cProfile</code></td></tr>
+                <tr><td><code>reseau</code></td><td><code>urllib</code></td></tr>
+                <tr><td><code>secret</code></td><td><code>secrets</code></td></tr>
+                <tr><td><code>sqlite</code></td><td><code>sqlite3</code></td></tr>
+                <tr><td><code>ssl</code></td><td><code>ssl</code></td></tr>
+                <tr><td><code>statistiques</code></td><td><code>statistics</code></td></tr>
+                <tr><td><code>systeme</code></td><td><code>sys</code></td></tr>
+                <tr><td><code>systeme_exploitation</code></td><td><code>os</code></td></tr>
+                <tr><td><code>temps</code></td><td><code>time</code></td></tr>
+                <tr><td><code>test_rapide</code></td><td><code>pytest</code></td></tr>
+                <tr><td><code>tests</code></td><td><code>unittest</code></td></tr>
+                <tr><td><code>tortue</code></td><td><code>turtle</code></td></tr>
+                <tr><td><code>traceback</code></td><td><code>traceback</code></td></tr>
+                <tr><td><code>web</code></td><td><code>requests</code></td></tr>
+                <tr><td><code>xml</code></td><td><code>xml</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- 8. EXEMPLES ---- -->
+        <section class="doc-section" id="exemples" aria-labelledby="ex-h">
+          <div class="doc-badge">Exemples</div>
+          <h1 id="ex-h" class="doc-h1">8. Exemples complets</h1>
+          <p class="doc-text">Voir tous les exemples avec comparaison interactive sur la <a href="examples.html" class="doc-link">page Exemples</a>.</p>
+
+          <h2 class="doc-h2">Calculatrice</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">calculatrice.fy</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code><span class="kw-fr">tantque</span> <span class="kw-bool">Vrai</span>:
+    <span class="kw-fr">essayer</span>:
+        entree = <span class="kw-fn">saisir</span>(<span class="kw-str">">>> "</span>)
+        <span class="kw-fr">si</span> entree <span class="kw-fr">dans</span> (<span class="kw-str">"quitter"</span>, <span class="kw-str">"q"</span>):
+            <span class="kw-fr">casser</span>
+        <span class="kw-fn">afficher</span>(<span class="kw-str">f"= {eval(entree)}"</span>)
+    <span class="kw-fr">sauf</span> ZeroDivisionError:
+        <span class="kw-fn">afficher</span>(<span class="kw-str">"Division par zéro!"</span>)
+    <span class="kw-fr">sauf</span> Exception:
+        <span class="kw-fn">afficher</span>(<span class="kw-str">"Expression invalide."</span>)</code></div>
+          </div>
+
+          <h2 class="doc-h2">Fibonacci</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">fibonacci.fy</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code><span class="kw-fr">déf</span> <span class="kw-fn">fibonacci</span>(n):
+    <span class="kw-fr">si</span> n <= <span class="kw-num">1</span>:
+        <span class="kw-fr">retourner</span> n
+    <span class="kw-fr">retourner</span> fibonacci(n-<span class="kw-num">1</span>) + fibonacci(n-<span class="kw-num">2</span>)
+
+<span class="kw-fr">pour</span> i <span class="kw-fr">dans</span> <span class="kw-fn">intervalle</span>(<span class="kw-num">15</span>):
+    <span class="kw-fn">afficher</span>(<span class="kw-str">f"F({i}) = {fibonacci(i)}"</span>)</code></div>
+          </div>
+        </section>
+
+        <!-- ---- 9. API ---- -->
+        <section class="doc-section" id="api" aria-labelledby="api-h">
+          <div class="doc-badge">API</div>
+          <h1 id="api-h" class="doc-h1">9. API Python</h1>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">python</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code><span class="kw-fr">from</span> frython <span class="kw-fr">import</span> transpiler, InterpreteurFrython
+
+<span class="kw-comment"># Transpiler uniquement</span>
+code_python = transpiler(<span class="kw-str">"""
+déf bonjour(nom):
+    afficher(f"Bonjour, {nom}!")
+bonjour("Monde")
+"""</span>)
+<span class="kw-fn">print</span>(code_python)
+
+<span class="kw-comment"># Exécuter</span>
+interp = InterpreteurFrython()
+interp.executer_source(code_frython)
+
+<span class="kw-comment"># Exécuter un fichier</span>
+interp.executer_fichier(<span class="kw-str">"mon_programme.fy"</span>)</code></div>
+          </div>
+        </section>
+
+        <!-- ---- 10. ARCHITECTURE ---- -->
+        <section class="doc-section" id="architecture" aria-labelledby="arch-h">
+          <div class="doc-badge">Interne</div>
+          <h1 id="arch-h" class="doc-h1">10. Architecture interne</h1>
+
+          <div class="arch-tree">
+            <div class="arch-item arch-root">
+              <span class="arch-icon">📁</span>
+              <code>frython/</code>
+            </div>
+            <div class="arch-children">
+              <div class="arch-item">
+                <span class="arch-icon">🐍</span>
+                <code>__init__.py</code>
+                <span class="arch-desc">Point d'entrée, exports publics</span>
+              </div>
+              <div class="arch-item">
+                <span class="arch-icon">🔤</span>
+                <code>lexeur.py</code>
+                <span class="arch-desc">Tokenizer (analyse lexicale)</span>
+              </div>
+              <div class="arch-item arch-highlight">
+                <span class="arch-icon">⚙️</span>
+                <code>transpileur.py</code>
+                <span class="arch-desc">Cœur : traduit Frython → Python</span>
+              </div>
+              <div class="arch-item">
+                <span class="arch-icon">▶️</span>
+                <code>interpreteur.py</code>
+                <span class="arch-desc">REPL et exécution</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="doc-h2">Étapes du transpileur</h2>
+          <ol class="doc-list doc-list-ordered">
+            <li><strong>Séparation des chaînes</strong> — protège le contenu des strings</li>
+            <li><strong>Traduction des méthodes</strong> — <code>.ajouter()</code> → <code>.append()</code></li>
+            <li><strong>Traduction des modules</strong> — <code>mathématiques</code> → <code>math</code></li>
+            <li><strong>Traduction des mots-clés</strong> — <code>si</code> → <code>if</code>, <code>afficher</code> → <code>print</code></li>
+            <li><strong>Traduction des f-strings</strong> — traduit les expressions à l'intérieur des <code>{}</code></li>
+          </ol>
+        </section>
+
+        <!-- ---- 11. VS CODE ---- -->
+        <section class="doc-section" id="vscode" aria-labelledby="vsc-h">
+          <div class="doc-badge">Outils</div>
+          <h1 id="vsc-h" class="doc-h1">11. Extension VS Code</h1>
+
+          <p class="doc-text">Une extension VS Code est disponible pour Frython avec :</p>
+          <ul class="doc-list">
+            <li>🎨 <strong>Coloration syntaxique</strong> complète pour les fichiers <code>.fy</code></li>
+            <li>⚡ <strong>Snippets</strong> pour écrire du Frython rapidement</li>
+            <li>↵ <strong>Auto-indentation</strong> après <code>:</code></li>
+            <li>🔒 <strong>Auto-fermeture</strong> des paires de caractères</li>
+          </ul>
+
+          <h2 class="doc-h2">Snippets disponibles</h2>
+          <div class="doc-table-wrapper">
+            <table class="doc-table">
+              <thead><tr><th>Préfixe</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td><code>aff</code></td><td><code>afficher()</code></td></tr>
+                <tr><td><code>afff</code></td><td><code>afficher()</code> avec f-string</td></tr>
+                <tr><td><code>si</code></td><td>Bloc si/sinon</td></tr>
+                <tr><td><code>sisi</code></td><td>Bloc si/sinonsi/sinon</td></tr>
+                <tr><td><code>def</code></td><td>Définir une fonction</td></tr>
+                <tr><td><code>defr</code></td><td>Fonction avec retour</td></tr>
+                <tr><td><code>cls</code></td><td>Définir une classe</td></tr>
+                <tr><td><code>clsh</code></td><td>Classe avec héritage</td></tr>
+                <tr><td><code>tq</code></td><td>Boucle tantque</td></tr>
+                <tr><td><code>pour</code></td><td>Boucle pour/dans</td></tr>
+                <tr><td><code>pouri</code></td><td>Boucle pour avec intervalle</td></tr>
+                <tr><td><code>ess</code></td><td>Bloc essayer/sauf</td></tr>
+                <tr><td><code>esse</code></td><td>Bloc essayer/sauf/enfin</td></tr>
+                <tr><td><code>imp</code></td><td>Importer</td></tr>
+                <tr><td><code>lev</code></td><td>Lever une erreur</td></tr>
+                <tr><td><code>comp</code></td><td>Compréhension de liste</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- 12. FAQ ---- -->
+        <section class="doc-section" id="faq" aria-labelledby="faq-h">
+          <div class="doc-badge">FAQ</div>
+          <h1 id="faq-h" class="doc-h1">12. FAQ</h1>
+
+          <div class="accordion" id="faq-accordion">
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Frython est-il vraiment utilisable en production ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                Techniquement oui — le code transpilé est du Python valide. En pratique, votre équipe va vous regarder bizarrement.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Puis-je utiliser des bibliothèques Python externes ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                Oui, toutes. <code>importer numpy comme np</code> fonctionne parfaitement.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Les f-strings fonctionnent-elles ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                Oui, et les expressions à l'intérieur des <code>{}</code> sont aussi traduites.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Puis-je mixer Frython et Python dans le même fichier ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                Oui — <code>def</code> et <code>déf</code> sont tous les deux supportés, <code>True</code> et <code>Vrai</code> aussi.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Frython supporte-t-il async/await ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                Oui — <code>asynchrone</code> et <code>attendre</code>.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" aria-expanded="false">
+                <span>Pourquoi ce projet existe-t-il ?</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <em>Pourquoi pas ?</em> 🥐
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- 13. CONTRIBUER ---- -->
+        <section class="doc-section" id="contribuer" aria-labelledby="contrib-h">
+          <div class="doc-badge">Communauté</div>
+          <h1 id="contrib-h" class="doc-h1">13. Contribuer</h1>
+
+          <h2 class="doc-h2">Comment contribuer</h2>
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-block-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+              <span class="code-block-lang">bash</span>
+              <button class="code-copy-btn">📋 Copier</button>
+            </div>
+            <div class="code-block-body"><code><span class="kw-comment"># 1. Forker le repo</span>
+git clone https://github.com/Artleboss2/frython.git
+
+<span class="kw-comment"># 2. Créer une branche</span>
+git checkout -b feature/ma-feature
+
+<span class="kw-comment"># 3. Lancer les tests</span>
+python -m unittest tests/test_frython.py -v
+
+<span class="kw-comment"># 4. Committer et pusher</span>
+git commit -m <span class="kw-str">"feat: ma feature"</span>
+git push origin feature/ma-feature</code></div>
+          </div>
+
+          <h2 class="doc-h2">Idées de contributions</h2>
+          <ul class="doc-list">
+            <li>Ajouter de nouveaux mots-clés français</li>
+            <li>Améliorer les messages d'erreur en français</li>
+            <li>Créer des exemples de programmes</li>
+            <li>Ajouter des tests</li>
+            <li>Améliorer la documentation</li>
+            <li>Créer des tutoriels</li>
+            <li>Traduire dans d'autres langues (<em>Pythonisch ? Pythönen ?</em>)</li>
+          </ul>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/docs.js"></script>
+</body>
+</html>
